@@ -35,4 +35,9 @@ public class Movie {
 		this.language = language;
 	}
 	
+	@Override
+	public String toString(){
+		return "{ id : "+getId()+", title : "+getTitle()+","
+				+ " year : "+getYear()+" , language : "+getLanguage()+" }";
+	}
 }

@@ -1,7 +1,6 @@
 package io.egen.rentalflix;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -17,7 +16,7 @@ public class MovieService implements IFlix {
 
 	@Override
 	public List<Movie> findAll() {
-		return (ArrayList<Movie>) movies.values();
+		return new ArrayList<Movie>(movies.values());
 	}
 	
 	@Override
@@ -38,7 +37,8 @@ public class MovieService implements IFlix {
 		if(movies.containsKey(movie.getId())){
 			throw new IllegalArgumentException("Movie exists. Please use update() to update.");
 		}
-		return movies.put(movie.getId(), movie); //returns old movie
+		movies.put(movie.getId(), movie);
+		return movie;
 	}
 
 	@Override
@@ -46,11 +46,15 @@ public class MovieService implements IFlix {
 		if(!movies.containsKey(movie.getId())){
 			throw new IllegalArgumentException("No such Movie exists");
 		}
-		return movies.put(movie.getId(), movie); //returns old movie
+		movies.put(movie.getId(), movie);
+		return movie;
 	}
 
 	@Override
 	public Movie delete(int id) {
+		if(!movies.containsKey(id)){
+			throw new IllegalArgumentException("No such Movie exists");
+		}
 		return movies.remove(id);
 	}
 
