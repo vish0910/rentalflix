@@ -8,64 +8,61 @@ import io.egen.rentalflix.database.MovieDatabase;
 public class Tester {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		MovieService2 ms = new MovieService2();
+//		MovieService ms = new MovieService();
+		MovieService2 ms = MovieService2.getInstance();
 		Movie m1 = new Movie();
 		m1.setId(101);
-		m1.setTitle("Hello");
+		m1.setTitle("The Gift");
 		m1.setLanguage("English");
-		m1.setYear(2005);
-		System.out.println(ms.create(m1));
-
-		
-		
+		m1.setYear(2015);
+		System.out.println("Created: "+ms.create(m1)); 
+//		ms = new MovieService2();
+//		ms = MovieService2.getInstance();
 		m1 = new Movie();
 		m1.setId(102);
-		m1.setTitle("Namaste");
-		m1.setLanguage("Hindi");
-		m1.setYear(1990);
-		System.out.println(ms.create(m1));
+		m1.setTitle("The Ring");
+		m1.setLanguage("English");
+		m1.setYear(2005);
+		System.out.println("Created: "+ms.create(m1));
 		
 		ArrayList<Movie> al = (ArrayList<Movie>) ms.findAll();
 		System.out.println("Find All:"+ al);
 		
-		System.out.println("Looking for Hello:"+ms.findByName("Hello").toString());
-//		System.out.println("Looking for Josh:"+ms.findByName("Josh").toString());
+		System.out.println("Looking for The Gift:"+ms.findByName("The Gift").toString());
+		System.out.println("Looking for Burfi:"+ms.findByName("Burfi").toString());
 	
 		m1 = new Movie();
 		m1.setId(101);
-		m1.setTitle("Josh");
+		m1.setTitle("Talvar");
 		m1.setLanguage("Hindi");
-		m1.setYear(1990);
+		m1.setYear(2015);
+		//Try to create duplicate
 //		System.out.println(ms.create(m1)); //Works
 		
-		System.out.println("Updating Hello -> Josh"+ms.update(m1));
+		System.out.println("Updating The Gift -> Talvar"+ms.update(m1));
 		System.out.println("*Post Updating: "+ms.findAll());
 
-		System.out.println("Looking for Josh:"+ms.findByName("Josh").toString());
+		System.out.println("Looking for Talvar:"+ms.findByName("Talvar").toString());
 		
-//		m1 = new Movie();
-//		m1.setId(201);
-//		m1.setTitle("Hosh");
-//		m1.setLanguage("Hindi");
-//		m1.setYear(1991);
-//		System.out.println("Updating Namaste -> Josh"+ms.update(m1)); //Works
+		//Updating with non existent movie
+		m1 = new Movie();
+		m1.setId(201);
+		m1.setTitle("Burfi");
+		m1.setLanguage("Hindi");
+		m1.setYear(2013);
+//		System.out.println("Updating with non existent movie"+ms.update(m1)); //Works
 		
 //		System.out.println("Deleting 102"+ms.delete(102));
-//		System.out.println("*Post Deleting: "+ms.findAll());
+//		System.out.println("*Post Deleting: "+ms.findAll()); // Works
 		
 		Map<Integer, String> rentedMovies = MovieDatabase.getRentedMovies();
 		rentedMovies.put(101, "Vishal");
-//		rentedMovies.put(103, "Vishal");
-
 		
 		System.out.println("Rented Movies: "+ rentedMovies.toString());
 		
 		System.out.println("Can 101 rented?:"+ms.rentMovie(101, "Rohit"));
 		System.out.println("Can 102 rented?:"+ms.rentMovie(102, "Sohit"));
 		System.out.println("Can 103 rented?:"+ms.rentMovie(103, "Mohit"));
-
-
 		
 	}
 

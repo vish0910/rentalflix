@@ -7,13 +7,15 @@ import java.util.Map;
 import io.egen.rentalflix.database.MovieDatabase;
 
 /**
- * Service implementing IFlix interface
- * You can use any Java collection type to store movies
+ * Service implementing IFlix interface.
+ * Uses ConcurrentHashMap to store movies.
+ * 
  */
 public class MovieService implements IFlix {
-	Map<Integer,Movie> movies = MovieDatabase.getMovies();
-	Map<Integer, String> rentedMovies = MovieDatabase.getRentedMovies();
-
+	private Map<Integer,Movie> movies = MovieDatabase.getMovies();
+	private Map<Integer, String> rentedMovies = MovieDatabase.getRentedMovies();
+	
+	
 	@Override
 	public List<Movie> findAll() {
 		return new ArrayList<Movie>(movies.values());

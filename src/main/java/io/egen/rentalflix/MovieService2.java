@@ -8,12 +8,24 @@ import java.util.Map;
 import io.egen.rentalflix.database.MovieDatabase;
 
 /**
- * Service implementing IFlix interface You can use any Java collection type to store movies
+ * Service implementing IFlix interface.
+ * Uses List to store movies.
+ * Implements a singleton pattern.
  */
-public class MovieService2 implements IFlix {
-	List<Movie> movies = MovieDatabase.getMovieList();
-	Map<Integer, String> rentedMovies = MovieDatabase.getRentedMovies();
+public final class MovieService2 implements IFlix {
+	private List<Movie> movies = MovieDatabase.getMovieList();
+	private Map<Integer, String> rentedMovies = MovieDatabase.getRentedMovies();
 	
+	private static MovieService2 ms = null;
+	
+	private MovieService2() {}
+
+	public static synchronized MovieService2 getInstance() {
+		if (ms == null) {
+			ms = new MovieService2();
+		}
+		return ms;
+	}
 
 	@Override
 	public List<Movie> findAll() {
@@ -77,7 +89,6 @@ public class MovieService2 implements IFlix {
 
 	@Override
 	public boolean rentMovie(int movieId, String user) {
-		// return (movies.containsKey(movieId) && !rentedMovies.containsKey(movieId))?true:false;
 		synchronized (movies) {
 			Iterator<Movie> iterator = movies.iterator();
 			while (iterator.hasNext()) {
@@ -87,6 +98,7 @@ public class MovieService2 implements IFlix {
 				}
 			}
 		}
-		throw new IllegalArgumentException("No such Movie exists");
+//		throw new IllegalArgumentException("No such Movie exists");
+		return false;
 	}
 }
