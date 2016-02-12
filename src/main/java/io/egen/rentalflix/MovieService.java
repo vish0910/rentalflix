@@ -29,6 +29,7 @@ public class MovieService implements IFlix {
 				result.add(m);
 			}	
 		}
+
 		return result;
 	}
 
