@@ -17,8 +17,8 @@ import io.egen.rentalflix.database.MovieDatabase;
  * JUnit test cases for MovieService
  */
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
-public class MovieServiceTest {
-	private MovieService ms = null;
+public class MovieService2Test {
+	private MovieService2 ms = null;
 
 	private static List<Movie> lm = new ArrayList<Movie>();
 
@@ -59,12 +59,11 @@ public class MovieServiceTest {
 	}
 
 	/**
-	 * Run before every test. Create a new instance of MovieService to test whether the
-	 * database is static and multiple clients can access the same data concurrently.
+	 * Run before every test. Get a singleton instance of MovieService for the test.
 	 */
 	@Before
 	public void beforeEveryTest() {
-		ms = new MovieService();
+		ms = MovieService2.getInstance();
 	}
 
 	/**
