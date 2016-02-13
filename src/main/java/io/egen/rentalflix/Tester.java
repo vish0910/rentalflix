@@ -8,21 +8,16 @@ import io.egen.rentalflix.database.MovieDatabase;
 public class Tester {
 
 	public static void main(String[] args) {
-//		MovieService ms = new MovieService();
-		MovieService2 ms = MovieService2.getInstance();
-		Movie m1 = new Movie();
-		m1.setId(101);
-		m1.setTitle("The Gift");
-		m1.setLanguage("English");
-		m1.setYear(2015);
+		MovieService ms = new MovieService();
+//		MovieService2 ms = MovieService2.getInstance();
+
+		Movie m1 = MovieFactory.getMovie("The Gift", 2015, "English");
+		
 		System.out.println("Created: "+ms.create(m1)); 
 //		ms = new MovieService2();
 //		ms = MovieService2.getInstance();
-		m1 = new Movie();
-		m1.setId(102);
-		m1.setTitle("The Ring");
-		m1.setLanguage("English");
-		m1.setYear(2005);
+		m1 = MovieFactory.getMovie("The Ring", 2015, "Japanese");
+
 		System.out.println("Created: "+ms.create(m1));
 		
 		ArrayList<Movie> al = (ArrayList<Movie>) ms.findAll();

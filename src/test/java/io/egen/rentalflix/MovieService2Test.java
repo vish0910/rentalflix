@@ -38,32 +38,16 @@ public class MovieService2Test {
 	@BeforeClass
 	public static void beforeAnyTest() {
 
-		m1 = new Movie();
-		m1.setId(101);
-		m1.setTitle("The Gift");
-		m1.setLanguage("English");
-		m1.setYear(2015);
+		m1 = MovieFactory.getMovie("The Gift", 2015, "English");
 		lm.add(m1);
 
-		m2 = new Movie();
-		m2.setId(102);
-		m2.setTitle("The Ring");
-		m2.setLanguage("English");
-		m2.setYear(2005);
+		m2 = MovieFactory.getMovie("The Ring", 2005, "English");
 		lm.add(m2);
 
-		m3 = new Movie();
-		m3.setId(103);
-		m3.setTitle("Talvar");
-		m3.setLanguage("Hindi");
-		m3.setYear(2015);
+		m3 = MovieFactory.getMovie("Talvar", 2015, "Hindi");
 		lm.add(m3);
 
-		m4 = new Movie();
-		m4.setId(104);
-		m4.setTitle("The Ring");
-		m4.setLanguage("Japanese");
-		m4.setYear(2015);
+		m4 = MovieFactory.getMovie("The Ring", 2001, "Japanese");
 		lm.add(m4);
 
 		doesnotExistMovie = new Movie();

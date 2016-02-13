@@ -9,10 +9,17 @@ import java.util.concurrent.ConcurrentHashMap;
 import io.egen.rentalflix.Movie;
 
 public class MovieDatabase {
+	// Map to save Movies using MovieService
 	private static Map<Integer,Movie> movies = new ConcurrentHashMap<Integer,Movie>();
-	private static Map<Integer,String> rentedMovies = new ConcurrentHashMap<Integer,String>();
-	private static List<Movie> movieList = Collections.synchronizedList(new ArrayList<Movie>());
 	
+	// Map to save Rented Movies
+	private static Map<Integer,String> rentedMovies = new ConcurrentHashMap<Integer,String>();
+	
+	// List to save Movies using MovieService2 
+	private static List<Movie> movieList = Collections.synchronizedList(new ArrayList<Movie>());
+	private static int counter = 100;
+	
+	//GETTERS
 	public static List<Movie> getMovieList() {
 		return movieList;
 	}
@@ -25,4 +32,12 @@ public class MovieDatabase {
 		return rentedMovies;
 	}
 
+	public static int getCounter() {
+		return counter;
+	}
+
+	public static void setCounter(int counter) {
+		MovieDatabase.counter = counter;
+	}
+	
 }
