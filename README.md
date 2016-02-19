@@ -6,7 +6,7 @@
 	
 * This project therefore contains 2 JUnit test files. Both have exactly same set of tests, and they just test MovieService and MovieService2 respectively)
 
-* My approach is to use a MovieFactory in the MovieService to create a Movie.
+* My approach is to use a MovieFactory in the MovieService to create a Movie. MovieFactory will be responsible to generate a unique id for the Movie.
 
 ----------------------------------------------
 Java assessment for new training candidates.
